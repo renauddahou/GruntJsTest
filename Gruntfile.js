@@ -2,6 +2,9 @@ module.exports = function(grunt) {
     grunt.initConfig({
         package: grunt.file.readJSON('package.json'),
         uglify: {
+            options: {
+                banner: 'const b = "in all targets"; '
+            },
             t1: {
                 files: [
                     {
@@ -17,10 +20,13 @@ module.exports = function(grunt) {
                 ]
             },
             t2: {
+                options: {
+                    banner: 'const b = "<%= package.version %>"; '
+                },
                 files: [
                     {
                         src: 'src/*.js',
-                        dest: 'build/abc.min.js'
+                        dest: 'build/<%= package.name %>.min.js'
                     }
                 ]
             }
@@ -29,4 +35,5 @@ module.exports = function(grunt) {
     
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.registerTask('compressJS','uglify');
+    grunt.registerTask('compressABC','uglify:t2');
 };
