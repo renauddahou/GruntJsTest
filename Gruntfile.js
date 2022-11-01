@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
     grunt.initConfig({
-        package: grunt.file.readJSON('package.json')
+        package: grunt.file.readJSON('package.json'),
         uglify: {
             t1: {
                 files: [
@@ -29,3 +29,4 @@ module.exports = function(grunt) {
     
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.registerTask('compressJS','uglify');
+};
